@@ -1,0 +1,470 @@
+
+:root {
+  --u: 4px;
+
+  --bg: #e9e1de;       
+  --text: #1a0f12;
+  --accent: #6b0015;    
+  --accent-2: #7a0018;
+  --white: #ffffff;
+
+  --radius-xl: calc(var(--u) * 8);  
+  --radius-lg: calc(var(--u) * 6);  
+  --radius-md: calc(var(--u) * 4);  
+
+  --shadow-soft: 0 calc(var(--u) * 2) calc(var(--u) * 6) rgba(0,0,0,.12);
+
+  --container: 1200px;
+}
+
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+
+  background: url("./image/background.jpg") center / cover no-repeat fixed;
+}
+
+main, header, footer, section, .timer, .gallery {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc(var(--u) * 10);  
+  padding-right: calc(var(--u) * 10); 
+}
+
+
+header {
+  padding-top: calc(var(--u) * 8);   
+  padding-bottom: calc(var(--u) * 6);
+}
+
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 10);
+}
+
+header a {
+  text-decoration: none;
+  color: #241417;
+  font-size: calc(var(--u) * 4);  
+  line-height: 1.2;
+  padding: calc(var(--u) * 2) calc(var(--u) * 2); 
+  border-radius: calc(var(--u) * 2); /* 8 */
+}
+
+header a:hover {
+  color: var(--accent);
+}
+
+/* “активне” посилання (якщо захочеш — додай class="active" у потрібний <a>) */
+header a.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* =========================
+   TITLES
+========================= */
+h1, h2 {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.15;
+}
+
+/* =========================
+   PAGE: loveme.html (головна)
+   (структура: h1 + div img + footer) :contentReference[oaicite:5]{index=5}
+========================= */
+/* ГОЛОВНА: робимо полотно як у фреймі */
+body{
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+body > h1{
+  position: absolute;
+  left: 40px;          /* можеш підкрутити, але кратно 4 */
+  top: 180px;          /* теж підкрутити, кратно 4 */
+  margin: 0;
+
+  color: #6b0015;
+  font-weight: 800;
+  font-size: 96px;     /* якщо треба більше/менше — скажеш */
+  line-height: 1.05;
+}
+img[src*="red-cat"]{
+  position: absolute !important;
+  right: 4px !important;
+  left: auto !important;
+  top: 20px !important;
+  width: 653px !important;
+  height: 653px !important;
+}
+
+/* нижня бордова плашка */
+footer{
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  left: 0;
+  right: 0;
+
+  position: fixed;
+  bottom: 0;
+  background: #6b0015;
+  color: #fff;
+  padding: 16px 0; /* тільки верх/низ */
+  text-align: center;
+}
+
+footer h3 {
+  margin: 0;
+  font-size: calc(var(--u) * 3.5); /* 14 */
+  font-weight: 500;
+  text-align: center;
+}
+
+/* =========================
+   PAGE: desktop2.html (таймер) :contentReference[oaicite:6]{index=6}
+========================= */
+.timer {
+  margin-top: calc(var(--u) * 18);  /* 72 */
+  background: var(--accent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  padding: calc(var(--u) * 12);     /* 48 */
+  text-align: center;
+  color: var(--white);
+}
+
+.timer h2 {
+  color: var(--white);
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: calc(var(--u) * 8); /* 32 */
+}
+
+#loveTimer {
+  margin: 0;
+  font-size: clamp(20px, 2.6vw, 40px);
+  font-weight: 700;
+}
+
+/* коти на сторінці таймера: sleep-cat (вгорі справа), love-cat (знизу зліва) */
+img[src*="sleep-cat"]{
+  position: absolute;
+  right: -20px;  /* щоб трохи "вилазив" */
+  top: -20px;
+
+  width: 420px;
+  height: auto;
+}
+
+img[src*="love-cat"]{
+  position: fixed;   /* ВАЖЛИВО */
+  left: 0;
+  bottom: 0;
+
+  width: 420px; /* піджени якщо треба */
+  height: auto;
+}
+
+/* =========================
+   PAGE: desktop3.html (галерея) :contentReference[oaicite:7]{index=7}
+========================= */
+.gallery {
+  padding-top: 20px; /* 40px від верху */
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.gallery h1{
+  margin: 0; /* прибираємо зайві відступи */
+}
+/* сітка 2×5 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: calc(var(--u) * 8); /* 32 */
+  align-items: start;
+  justify-items: center;
+  padding-bottom: calc(var(--u) * 14); /* 56 */
+}
+
+.photo{
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+.photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* лапки/вушка кота як декор */
+img[src*="ears-cat"]{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+
+  width: 260px; /* піджени під макет */
+  height: auto;
+}
+img[src*="paws-cat"]{
+  position: absolute;
+  right: 0;
+  top: 80px; /* піджени під рівень тексту */
+
+  width: 180px;
+  height: auto;
+}
+
+/* =========================
+   PAGE: desktop4.html (лист з конвертом) :contentReference[oaicite:8]{index=8}
+========================= */
+body > h2{
+  position: absolute;
+  left: 270px;          /* можеш підкрутити, але кратно 4 */
+  top: 60px;          /* теж підкрутити, кратно 4 */
+  margin: 0;
+
+  color: #6b0015;
+  font-weight: 800;
+  font-size: 74px;     /* якщо треба більше/менше — скажеш */
+  line-height: 1.05;
+}
+img[src*="Envelope"] {
+  display: block;
+  margin: 0 auto;
+  margin-top: 140px;
+
+  width: 560px;
+  height: auto;
+
+  position: relative;
+  z-index: 1;
+}
+img[src*="kiss-cat"]{
+  position: fixed;
+  left: 1160px;
+  bottom: 0;
+
+  width: 420px;
+}
+img[src*="cat-rabi"]{
+  position: fixed;
+  right: 40px;
+  bottom: 0;
+
+  width: 420px;
+}
+/* =========================
+   PAGE: desktop41.html (сам лист: квадрат + текст) :contentReference[oaicite:9]{index=9}
+========================= */
+img[src*="kvadrat"]{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  top: 240px; /* ⬅️ піджени: 200 / 220 / 240 */
+  width: min(900px, 86vw);
+}
+
+body > p {
+  position: relative;
+  z-index: 1;
+
+  max-width: 800px;
+  margin: 160px auto 0; /* ⬅️ має співпадати з квадратом */
+
+  padding: 56px;
+
+  color: #ffffff;        /* БІЛИЙ */
+  font-style: italic;    /* КУРСИВ */
+  line-height: 1.6;
+  text-align: center;
+}
+/* =========================
+   PAGE: desktop5.html (88 причин) :contentReference[oaicite:10]{index=10}
+========================= */
+/* ===== Заголовок на сторінці ===== */
+/* щоб absolute елементи рахувалися від сторінки */
+body{
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ===== Заголовок як у Figma (2 рядки) ===== */
+body > h2{
+  position: absolute;
+  left: 270px;          /* можеш підкрутити, але кратно 4 */
+  top: 60px;          /* теж підкрутити, кратно 4 */
+  margin: 0;
+
+  color: #6b0015;
+  font-weight: 800;
+  font-size: 74px;     /* якщо треба більше/менше — скажеш */
+  line-height: 1.05;
+}
+
+/* ===== СІТКИ 11×4 (44) ===== */
+:root{
+  --noteSize: clamp(38px, 1.3vw, 62px); /* менші квадрати як у Figma */
+  --noteGap:  clamp(6px, 0.6vw, 12px);
+  --noteRadius: 6px;
+}
+
+.notes{
+  display: grid;
+  gap: var(--noteGap);
+  grid-template-columns: repeat(11, var(--noteSize));
+  grid-auto-rows: var(--noteSize);
+  z-index: 3;
+}
+
+/* ЛІВА СІТКА — нижче заголовка, лівіше */
+.notes.left{
+  position: absolute;
+  left: 6%;
+  top: 40%;
+}
+
+/* ПРАВА СІТКА — нижче і правіше */
+.notes.right{
+  position: absolute;
+  left: 52%;
+  top: 65%;
+}
+
+
+/* ===== Квадратик-нотка ===== */
+.note{
+  width: var(--noteSize);
+  height: var(--noteSize);
+  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--noteRadius);
+  overflow: hidden;
+
+  position: relative;
+  cursor: zoom-in;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-radius .35s ease,
+    width .35s ease,
+    height .35s ease;
+}
+
+.note img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* NOTE — базово */
+.note{
+  width: var(--noteSize);
+  height: var(--noteSize);
+  border-radius: var(--noteRadius);
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+
+  /* важливо: для transform */
+  transform-origin: center;
+  transition: transform .35s ease, box-shadow .35s ease, border-radius .35s ease;
+  z-index: 1;
+}
+
+/* затемнення фону (під час hover) */
+.note::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: -1;
+}
+
+/* fullscreen через scale + перенос поверх всього */
+.note:hover{
+  z-index: 9999;
+  cursor: zoom-out;
+
+  /* робимо “великим” без position:fixed => не мигає */
+  transform: scale(8); /* якщо мало/багато — скажеш, підкручу */
+  border-radius: calc(var(--u) * 4);
+  box-shadow: 0 calc(var(--u) * 12) calc(var(--u) * 30) rgba(0,0,0,.45);
+}
+
+/* вмикаємо фон */
+.note:hover::before{
+  opacity: 1;
+}
+/* ===== КОТИКИ (під макет) ===== */
+img[src*="cat-rab"],   /* це твій великий котик зліва */
+img[src*="kitty"]{     /* це лежачий котик справа */
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* котик ЗНИЗУ ЗЛІВА (невеликий як у Figma) */
+img[src*="cat-rab"]{
+  left: 6%;
+  bottom: -8%;
+  width: clamp(260px, 24vw, 420px);
+}
+
+/* лежачий котик СПРАВА зверху біля правої сітки */
+img[src*="kitty"]{
+  right: 8%;
+  top: 22%;
+  width: clamp(360px, 38vw, 520px);
+}
+
+/* ===== АДАПТИВ (щоб не ламалось) ===== */
+@media (max-width: 1000px){
+  .notes.left{ left: 8%; top: 34%; }
+  .notes.right{ left: 50%; top: 60%; }
+}
+
+@media (max-width: 720px){
+  body > h2{ max-width: 22ch; padding-top: calc(var(--u)*8); }
+
+  /* сітки стають одна під одною */
+  .notes.left,
+  .notes.right{
+    position: static;
+    margin: calc(var(--u) * 8) auto 0;
+    justify-content: center;
+  }
+}

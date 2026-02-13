@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Скільки ми разом</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><a href="./loveme.html">&lt;3</a></li>
+        <li><a href="./desktop2.html">Стільки разом </a></li>
+        <li><a href="./desktop3.html">Наші фото</a></li>
+        <li><a href="./desktop4.html">Лист</a></li>
+        <li><a href="./desktop5.html">Чому кохаю?</a></li>
+      </ul>
+    </header>
+    <div>
+      <img src="./image/sleep-cat.png" alt="sleep cat" />
+    </div>
+    <div class="timer">
+      <h2>Ми разом вже:</h2>
+      <p id="loveTimer"></p>
+    </div>
+    <script>
+      const startDate = new Date("2025-08-24T18:50:00");
+
+      function updateTimer() {
+        const now = new Date();
+
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = now.getMonth() - startDate.getMonth();
+        let days = now.getDate() - startDate.getDate();
+        let hours = now.getHours() - startDate.getHours();
+        let minutes = now.getMinutes() - startDate.getMinutes();
+        let seconds = now.getSeconds() - startDate.getSeconds();
+
+        if (seconds < 0) {
+          seconds += 60;
+          minutes--;
+        }
+
+        if (minutes < 0) {
+          minutes += 60;
+          hours--;
+        }
+
+        if (hours < 0) {
+          hours += 24;
+          days--;
+        }
+
+        if (days < 0) {
+          const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += lastMonth.getDate();
+          months--;
+        }
+
+        if (months < 0) {
+          months += 12;
+          years--;
+        }
+
+        document.getElementById("loveTimer").innerHTML =
+          `${months + years * 12} місяців ${days} днів ${hours} годин ${minutes} хвилин ${seconds} секунд `;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    </script>
+    <div>
+      <img src="./image/love-cat.png" alt="kiss cat" />
+    </div>
+  </body>
+</html>
